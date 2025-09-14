@@ -65,4 +65,4 @@ MIT License - см. файл [LICENSE](LICENSE)
 
 ## 📚 Документация
 
-Полная документация по API и примеры доступны на [GitHub](https://github.com/open-fullpage/open-fullpage)
+Полная документация по API и примеры доступны на [GitHub](https://github.com/san4pro/open.fullp)
