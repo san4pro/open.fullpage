@@ -1,7 +1,7 @@
 class OpenFullpage {
     constructor() {
         this.currentSection = 0;
-        this.totalSections = 4; // Обновлено количество секций для демо open.fullpage
+        this.totalSections = 3; // Обновлено количество секций для демо open.fullpage
         this.isScrolling = false;
         this.scrollThreshold = 50; // Минимальная дистанция для свайпа на мобильном
         this.lastScrollTime = 0;
@@ -244,13 +244,13 @@ class OpenFullpage {
         
         if (this.consecutiveFastScrolls > 3) {
             // Молниеносные переходы
-            animationDuration = 200;
+            animationDuration = 400;
         } else if (isFastScroll || this.consecutiveFastScrolls > 1) {
             // Быстрые переходы
-            animationDuration = 350;
+            animationDuration = 700;
         } else {
             // Обычные переходы
-            animationDuration = 600;
+            animationDuration = 1200;
         }
 
         // Предзагружаем контент новой секции

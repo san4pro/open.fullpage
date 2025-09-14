@@ -10,6 +10,24 @@ body {
     height: 100vh;
 }
 
+/* Общие стили для скрытия полос прокрутки */
+.capability-matrix,
+.matrix-header,
+.code-structure,
+.speed-demo,
+.algorithm-explanation {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.capability-matrix::-webkit-scrollbar,
+.matrix-header::-webkit-scrollbar,
+.code-structure::-webkit-scrollbar,
+.speed-demo::-webkit-scrollbar,
+.algorithm-explanation::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
 .fullpage-container {
     position: relative;
     height: 100vh;
@@ -134,24 +152,85 @@ body {
     animation-delay: -22s;
 }
 
-/* Анимация плавания частиц */
+/* Анимация плавания частиц - постоянное движение */
 @keyframes float-particle {
     0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
+        transform: translateY(100vh) translateX(0) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateY(75vh) translateX(20px) rotate(90deg) scale(1.1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(50vh) translateX(50px) rotate(180deg) scale(1.2);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translateY(25vh) translateX(30px) rotate(270deg) scale(1.1);
+        opacity: 0.8;
+    }
+    95% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-10vh) translateX(-30px) rotate(360deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Дополнительные уникальные анимации для разнообразия */
+@keyframes float-particle-alt1 {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg) scale(1);
         opacity: 0;
     }
     10% {
         opacity: 0.6;
     }
-    50% {
-        transform: translateY(50vh) translateX(50px) rotate(180deg);
+    30% {
+        transform: translateY(70vh) translateX(-40px) rotate(120deg) scale(1.3);
+        opacity: 0.9;
+    }
+    60% {
+        transform: translateY(40vh) translateX(60px) rotate(240deg) scale(0.9);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(20vh) translateX(-20px) rotate(300deg) scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-15vh) translateX(45px) rotate(480deg) scale(0.6);
+        opacity: 0;
+    }
+}
+
+@keyframes float-particle-alt2 {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    15% {
         opacity: 0.8;
     }
-    90% {
+    35% {
+        transform: translateY(65vh) translateX(35px) rotate(135deg) scale(1.4);
+        opacity: 0.7;
+    }
+    55% {
+        transform: translateY(45vh) translateX(-25px) rotate(225deg) scale(1.1);
+        opacity: 0.9;
+    }
+    85% {
+        transform: translateY(15vh) translateX(55px) rotate(315deg) scale(0.8);
         opacity: 0.6;
     }
     100% {
-        transform: translateY(-10vh) translateX(-30px) rotate(360deg);
+        transform: translateY(-20vh) translateX(-35px) rotate(450deg) scale(1.2);
         opacity: 0;
     }
 }
@@ -159,27 +238,78 @@ body {
 /* Дополнительные эффекты для частиц */
 .particle:nth-child(odd) {
     background: linear-gradient(45deg, #00ffff, #00ff80);
-    animation-direction: alternate;
+    animation-name: float-particle;
 }
 
 .particle:nth-child(even) {
     background: linear-gradient(45deg, #ff00ff, #8000ff);
-    animation-direction: reverse;
+    animation-name: float-particle-alt1;
+}
+
+.particle:nth-child(4n) {
+    background: linear-gradient(45deg, #ffff00, #ff8000);
+    animation-name: float-particle-alt2;
 }
 
 /* Пульсация для некоторых частиц */
 .particle:nth-child(3n) {
-    animation: float-particle 20s infinite linear, pulse-particle 3s infinite ease-in-out;
+    animation: float-particle 20s infinite linear, pulse-particle 4s infinite ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.particle:nth-child(5n) {
+    animation: float-particle-alt1 25s infinite linear, pulse-particle 3s infinite ease-in-out;
+    box-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+}
+
+.particle:nth-child(7n) {
+    animation: float-particle-alt2 18s infinite linear, pulse-particle 5s infinite ease-in-out;
+    box-shadow: 0 0 12px rgba(255, 255, 0, 0.4);
+}
+
+/* Дополнительная анимация вращения */
+.particle:nth-child(6n) {
+    animation: float-particle 22s infinite linear, continuous-rotation 8s infinite linear;
+}
+
+@keyframes continuous-rotation {
+    0% {
+        transform: rotate(0deg) scale(1);
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg) scale(1.2);
+        filter: hue-rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg) scale(0.9);
+        filter: hue-rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg) scale(1.1);
+        filter: hue-rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        filter: hue-rotate(360deg);
+    }
 }
 
 @keyframes pulse-particle {
     0%, 100% {
         transform: scale(1);
-        filter: blur(1px);
+        filter: blur(1px) brightness(1);
+        box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
     }
-    50% {
-        transform: scale(1.5);
-        filter: blur(2px);
+    33% {
+        transform: scale(1.3);
+        filter: blur(1.5px) brightness(1.3);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+    66% {
+        transform: scale(0.8);
+        filter: blur(2px) brightness(1.1);
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
     }
 }
 
@@ -189,15 +319,15 @@ body {
 }
 
 .sections-wrapper.fast-transition {
-    transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .sections-wrapper.normal-transition {
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .sections-wrapper.ultra-fast-transition {
-    transition: transform 0.2s cubic-bezier(0.55, 0.05, 0.68, 0.19);
+    transition: transform 0.4s cubic-bezier(0.55, 0.05, 0.68, 0.19);
 }
 
 .section {
@@ -244,6 +374,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
+    /* Скрываем полосы прокрутки */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.section-content::-webkit-scrollbar {
+    display: none; /* WebKit */
 }
 
 .section.active .section-content {
@@ -773,7 +911,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Голограмма */
+/* Голограмма с разноцветной пульсацией */
 .hologram-container {
     position: relative;
     width: 300px;
@@ -791,8 +929,9 @@ body {
 .ring-1 {
     width: 100%;
     height: 100%;
-    border-color: rgba(0, 255, 255, 0.6);
-    animation-duration: 8s;
+    border-color: rgba(0, 255, 255, 0.8);
+    animation: hologram-rotate-1 8s linear infinite, ring-pulse-cyan 3s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
 .ring-2 {
@@ -800,9 +939,9 @@ body {
     height: 70%;
     top: 15%;
     left: 15%;
-    border-color: rgba(255, 107, 107, 0.6);
-    animation-duration: 6s;
-    animation-direction: reverse;
+    border-color: rgba(255, 107, 107, 0.8);
+    animation: hologram-rotate-2 6s linear reverse infinite, ring-pulse-red 2.5s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.5), inset 0 0 15px rgba(255, 107, 107, 0.3);
 }
 
 .ring-3 {
@@ -810,8 +949,9 @@ body {
     height: 40%;
     top: 30%;
     left: 30%;
-    border-color: rgba(255, 255, 255, 0.6);
-    animation-duration: 4s;
+    border-color: rgba(67, 233, 123, 0.8);
+    animation: hologram-rotate-3 4s linear infinite, ring-pulse-green 4s ease-in-out infinite;
+    box-shadow: 0 0 25px rgba(67, 233, 123, 0.6), inset 0 0 10px rgba(67, 233, 123, 0.4);
 }
 
 .hologram-core {
@@ -820,24 +960,141 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 4rem;
-    animation: core-pulse 2s ease-in-out infinite;
+    animation: core-pulse-multi 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
 }
 
-@keyframes hologram-rotate {
-    from {
-        transform: rotate(0deg);
+/* Уникальные анимации вращения для каждого кольца */
+@keyframes hologram-rotate-1 {
+    0% {
+        transform: rotate(0deg) scale(1);
     }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes core-pulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
+    25% {
+        transform: rotate(90deg) scale(1.05);
     }
     50% {
+        transform: rotate(180deg) scale(1);
+    }
+    75% {
+        transform: rotate(270deg) scale(1.05);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes hologram-rotate-2 {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    33% {
+        transform: rotate(120deg) scale(0.95);
+    }
+    66% {
+        transform: rotate(240deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes hologram-rotate-3 {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    20% {
+        transform: rotate(72deg) scale(1.08);
+    }
+    40% {
+        transform: rotate(144deg) scale(0.92);
+    }
+    60% {
+        transform: rotate(216deg) scale(1.15);
+    }
+    80% {
+        transform: rotate(288deg) scale(0.88);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* Цветные пульсации для каждого кольца */
+@keyframes ring-pulse-cyan {
+    0%, 100% {
+        border-color: rgba(0, 255, 255, 0.4);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.1);
+        transform: scale(1);
+    }
+    50% {
+        border-color: rgba(0, 255, 255, 1);
+        box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), inset 0 0 30px rgba(0, 255, 255, 0.5);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes ring-pulse-red {
+    0%, 100% {
+        border-color: rgba(255, 107, 107, 0.5);
+        box-shadow: 0 0 15px rgba(255, 107, 107, 0.3), inset 0 0 15px rgba(255, 107, 107, 0.2);
+        transform: scale(1);
+    }
+    33% {
+        border-color: rgba(255, 107, 107, 0.9);
+        box-shadow: 0 0 35px rgba(255, 107, 107, 0.7), inset 0 0 25px rgba(255, 107, 107, 0.4);
+        transform: scale(1.05);
+    }
+    66% {
+        border-color: rgba(255, 50, 150, 1);
+        box-shadow: 0 0 50px rgba(255, 50, 150, 0.9), inset 0 0 20px rgba(255, 50, 150, 0.6);
+        transform: scale(0.98);
+    }
+}
+
+@keyframes ring-pulse-green {
+    0%, 100% {
+        border-color: rgba(67, 233, 123, 0.6);
+        box-shadow: 0 0 25px rgba(67, 233, 123, 0.4), inset 0 0 10px rgba(67, 233, 123, 0.3);
+        transform: scale(1);
+    }
+    25% {
+        border-color: rgba(67, 233, 123, 0.8);
+        box-shadow: 0 0 35px rgba(67, 233, 123, 0.6), inset 0 0 15px rgba(67, 233, 123, 0.4);
+        transform: scale(1.03);
+    }
+    50% {
+        border-color: rgba(0, 255, 100, 1);
+        box-shadow: 0 0 45px rgba(0, 255, 100, 0.8), inset 0 0 25px rgba(0, 255, 100, 0.5);
+        transform: scale(1.06);
+    }
+    75% {
+        border-color: rgba(100, 255, 50, 0.9);
+        box-shadow: 0 0 30px rgba(100, 255, 50, 0.7), inset 0 0 20px rgba(100, 255, 50, 0.4);
+        transform: scale(1.01);
+    }
+}
+
+/* Улучшенная анимация ядра */
+@keyframes core-pulse-multi {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6)) hue-rotate(0deg);
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1.05);
+        filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8)) hue-rotate(60deg);
+    }
+    40% {
         transform: translate(-50%, -50%) scale(1.1);
+        filter: drop-shadow(0 0 25px rgba(255, 107, 107, 0.9)) hue-rotate(120deg);
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(1.08);
+        filter: drop-shadow(0 0 20px rgba(67, 233, 123, 0.8)) hue-rotate(180deg);
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(1.03);
+        filter: drop-shadow(0 0 30px rgba(255, 255, 0, 0.7)) hue-rotate(240deg);
     }
 }
 
@@ -1230,6 +1487,14 @@ body {
     border-radius: 10px;
     padding: 1.5rem;
     overflow-x: auto;
+    
+    /* Скрываем полосы прокрутки */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.code-content::-webkit-scrollbar {
+    display: none; /* WebKit */
 }
 
 .code-content pre {
@@ -1503,6 +1768,14 @@ body {
     padding: 1.5rem;
     overflow-x: auto;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Скрываем полосы прокрутки */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.code-snippet::-webkit-scrollbar {
+    display: none; /* WebKit */
 }
 
 .code-snippet pre {
