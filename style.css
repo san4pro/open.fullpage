@@ -1,0 +1,1859 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.fullpage-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Фоновая анимация частиц */
+.background-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: linear-gradient(45deg, #00ffff, #0080ff, #ff00ff);
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(1px);
+    animation: float-particle 20s infinite linear;
+}
+
+/* Разные размеры и позиции для частиц */
+.particle-1 {
+    width: 4px;
+    height: 4px;
+    left: 10%;
+    animation-duration: 15s;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    width: 6px;
+    height: 6px;
+    left: 20%;
+    animation-duration: 18s;
+    animation-delay: -2s;
+}
+
+.particle-3 {
+    width: 3px;
+    height: 3px;
+    left: 30%;
+    animation-duration: 22s;
+    animation-delay: -4s;
+}
+
+.particle-4 {
+    width: 5px;
+    height: 5px;
+    left: 40%;
+    animation-duration: 25s;
+    animation-delay: -6s;
+}
+
+.particle-5 {
+    width: 7px;
+    height: 7px;
+    left: 50%;
+    animation-duration: 20s;
+    animation-delay: -8s;
+}
+
+.particle-6 {
+    width: 4px;
+    height: 4px;
+    left: 60%;
+    animation-duration: 16s;
+    animation-delay: -10s;
+}
+
+.particle-7 {
+    width: 8px;
+    height: 8px;
+    left: 70%;
+    animation-duration: 24s;
+    animation-delay: -12s;
+}
+
+.particle-8 {
+    width: 3px;
+    height: 3px;
+    left: 80%;
+    animation-duration: 19s;
+    animation-delay: -14s;
+}
+
+.particle-9 {
+    width: 5px;
+    height: 5px;
+    left: 90%;
+    animation-duration: 21s;
+    animation-delay: -16s;
+}
+
+.particle-10 {
+    width: 6px;
+    height: 6px;
+    left: 15%;
+    animation-duration: 23s;
+    animation-delay: -18s;
+}
+
+.particle-11 {
+    width: 4px;
+    height: 4px;
+    left: 35%;
+    animation-duration: 17s;
+    animation-delay: -20s;
+}
+
+.particle-12 {
+    width: 7px;
+    height: 7px;
+    left: 75%;
+    animation-duration: 26s;
+    animation-delay: -22s;
+}
+
+/* Анимация плавания частиц */
+@keyframes float-particle {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(50vh) translateX(50px) rotate(180deg);
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-10vh) translateX(-30px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Дополнительные эффекты для частиц */
+.particle:nth-child(odd) {
+    background: linear-gradient(45deg, #00ffff, #00ff80);
+    animation-direction: alternate;
+}
+
+.particle:nth-child(even) {
+    background: linear-gradient(45deg, #ff00ff, #8000ff);
+    animation-direction: reverse;
+}
+
+/* Пульсация для некоторых частиц */
+.particle:nth-child(3n) {
+    animation: float-particle 20s infinite linear, pulse-particle 3s infinite ease-in-out;
+}
+
+@keyframes pulse-particle {
+    0%, 100% {
+        transform: scale(1);
+        filter: blur(1px);
+    }
+    50% {
+        transform: scale(1.5);
+        filter: blur(2px);
+    }
+}
+
+.sections-wrapper {
+    height: 100vh;
+    /* transition will be set dynamically by JavaScript */
+}
+
+.sections-wrapper.fast-transition {
+    transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.sections-wrapper.normal-transition {
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.sections-wrapper.ultra-fast-transition {
+    transition: transform 0.2s cubic-bezier(0.55, 0.05, 0.68, 0.19);
+}
+
+.section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Цвета для разных секций */
+.section[data-section="0"] {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+.section[data-section="1"] {
+    background: linear-gradient(135deg, #0c0c1e 0%, #1e1e3f 50%, #2d1b69 100%);
+}
+
+.section[data-section="2"] {
+    background: linear-gradient(135deg, #001a2e 0%, #003459 50%, #004d73 100%);
+}
+
+.section[data-section="3"] {
+    background: linear-gradient(135deg, #1a1a2e 0%, #3d3d5c 50%, #5a5a7a 100%);
+}
+
+.section-content {
+    max-width: 1200px;
+    width: 100%;
+    z-index: 2;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease-out;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section.active .section-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section.preparing .section-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Первая секция - Герой */
+.hero-title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #fff, #a8edea, #fed6e3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cta-button.primary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.cta-button.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.cta-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Секция "О нас" */
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    font-weight: bold;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.about-text h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: 600;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Секция услуг */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.service-card p {
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.service-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.service-tech span {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Portfolio Section */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.portfolio-image {
+    height: 250px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.portfolio-image::before {
+    content: '🖥️';
+    font-size: 4rem;
+    opacity: 0.3;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-info {
+    text-align: center;
+    padding: 2rem;
+    color: white;
+}
+
+.portfolio-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.portfolio-info p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.project-tech span {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.portfolio-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.portfolio-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.portfolio-stats {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-stats .stat {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    flex: 1;
+}
+
+
+
+
+
+/* Навигация */
+.navigation {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.nav-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-dot:hover,
+.nav-dot.active {
+    background: white;
+    border-color: white;
+    transform: scale(1.2);
+}
+
+/* Подсказка о скролле */
+.scroll-hint {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+    animation: pulse 2s infinite;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    pointer-events: none;
+}
+
+.scroll-text {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-arrow {
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Анимированные формы на фоне */
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 8s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 200px;
+    height: 200px;
+    top: 20%;
+    left: 80%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    left: 10%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 100px;
+    height: 100px;
+    top: 80%;
+    right: 20%;
+    animation-delay: 4s;
+}
+
+/* Новые футуристические стили */
+
+/* Главная секция */
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50px;
+    color: #00ffff;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.title-highlight {
+    color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.title-gradient {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(90deg);
+    }
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00ffff;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Кнопки с эффектами */
+.glow-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.glow-effect:hover::before {
+    left: 100%;
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Голограмма */
+.hologram-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.hologram-ring {
+    position: absolute;
+    border: 2px solid;
+    border-radius: 50%;
+    animation: hologram-rotate 10s linear infinite;
+}
+
+.ring-1 {
+    width: 100%;
+    height: 100%;
+    border-color: rgba(0, 255, 255, 0.6);
+    animation-duration: 8s;
+}
+
+.ring-2 {
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    border-color: rgba(255, 107, 107, 0.6);
+    animation-duration: 6s;
+    animation-direction: reverse;
+}
+
+.ring-3 {
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+    border-color: rgba(255, 255, 255, 0.6);
+    animation-duration: 4s;
+}
+
+.hologram-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    animation: core-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hologram-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes core-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* Частицы */
+.particle-system {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00ffff;
+    border-radius: 50%;
+    animation: particle-float 6s linear infinite;
+}
+
+.particle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+    left: 30%;
+    animation-delay: 1s;
+}
+
+.particle:nth-child(3) {
+    left: 50%;
+    animation-delay: 2s;
+}
+
+.particle:nth-child(4) {
+    left: 70%;
+    animation-delay: 3s;
+}
+
+.particle:nth-child(5) {
+    left: 90%;
+    animation-delay: 4s;
+}
+
+@keyframes particle-float {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Матрица возможностей */
+.glow-text {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    color: #00ffff;
+}
+
+.capability-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.matrix-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.capability-node {
+    width: 180px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.capability-node:hover,
+.capability-node.active {
+    transform: scale(1.05);
+    background: rgba(0, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+.capability-node.central {
+    width: 200px;
+    height: 140px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid rgba(0, 255, 255, 0.5);
+}
+
+.node-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.central-icon {
+    font-size: 3rem;
+    animation: core-pulse 2s ease-in-out infinite;
+}
+
+.node-title {
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.3rem;
+}
+
+.node-desc {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.connection-line {
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.5), transparent);
+    animation: data-flow 2s ease-in-out infinite;
+}
+
+@keyframes data-flow {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.capability-details {
+    margin-top: 2rem;
+    min-height: 100px;
+}
+
+.detail-card {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.detail-card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .stat-card {
+        min-width: 120px;
+    }
+
+    .capability-matrix {
+        gap: 1rem;
+    }
+
+    .matrix-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .capability-node {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .connection-line {
+        height: 30px;
+        width: 2px;
+        background: linear-gradient(180deg, transparent, rgba(0, 255, 255, 0.5), transparent);
+    }
+
+    .code-structure {
+        gap: 1.5rem;
+    }
+
+    .code-block {
+        padding: 1.5rem;
+    }
+
+    .speed-demo {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .devices-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .installation-steps {
+        gap: 1.5rem;
+    }
+
+    .install-step {
+        padding: 1.5rem;
+    }
+
+    .demo-controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .demo-controls span {
+        text-align: center;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .algorithm-steps {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .navigation {
+        right: 1rem;
+    }
+
+    .section {
+        padding: 1rem;
+    }
+
+    .hologram-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .navigation-demo {
+        padding: 1rem;
+        margin-top: 1.5rem;
+    }
+}
+
+@keyframes particle-fade {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-20px);
+    }
+}
+
+@keyframes energy-burst {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+/* Стили для демонстрации скрипта */
+
+.navigation-demo {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navigation-demo h4 {
+    margin-bottom: 1rem;
+    color: #00ffff;
+    font-size: 1.1rem;
+}
+
+.demo-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.demo-controls span {
+    padding: 0.5rem 1rem;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Стили для структуры кода */
+
+.code-structure {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.code-block {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-block h3 {
+    color: #00ffff;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.code-content {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+.code-content pre {
+    margin: 0;
+    color: #a8edea;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.code-content code {
+    color: #fed6e3;
+}
+
+/* Стили для демонстрации скорости */
+
+.speed-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.speed-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.speed-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.speed-card.normal {
+    border-color: rgba(67, 233, 123, 0.3);
+}
+
+.speed-card.fast {
+    border-color: rgba(255, 206, 84, 0.3);
+}
+
+.speed-card.ultra {
+    border-color: rgba(255, 107, 107, 0.3);
+}
+
+.speed-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.speed-card h3 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.speed-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #00ffff;
+}
+
+.speed-card p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.demo-bar {
+    height: 4px;
+    border-radius: 2px;
+    margin-top: 1rem;
+    animation: speed-demo 3s ease-in-out infinite;
+}
+
+.normal-bar {
+    background: linear-gradient(90deg, #43e97b, rgba(67, 233, 123, 0.3));
+    animation-duration: 3s;
+}
+
+.fast-bar {
+    background: linear-gradient(90deg, #ffce54, rgba(255, 206, 84, 0.3));
+    animation-duration: 1.2s;
+}
+
+.ultra-bar {
+    background: linear-gradient(90deg, #ff6b6b, rgba(255, 107, 107, 0.3));
+    animation-duration: 0.75s;
+}
+
+@keyframes speed-demo {
+    0%, 100% {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+    50% {
+        transform: scaleX(1);
+    }
+}
+
+/* Объяснение алгоритма */
+
+.algorithm-explanation {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.algorithm-explanation h3 {
+    color: #00ffff;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.algorithm-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    background: #00ffff;
+    color: #0f0f23;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Стили для устройств и браузеров */
+
+.devices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.device-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.device-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.device-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.device-card h3 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.device-card p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.device-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.device-features span {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.browser-support {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.browser-support h3 {
+    color: #00ffff;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.browsers {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.browser {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    font-weight: 500;
+}
+
+/* Стили для установки */
+
+.installation-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.install-step {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.step-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.install-step h3 {
+    color: #00ffff;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.code-snippet {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-snippet pre {
+    margin: 0;
+    color: #a8edea;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.code-snippet code {
+    color: #fed6e3;
+}
+
+.download-section {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.download-section h3 {
+    color: #00ffff;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.download-section p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.download-btn.primary {
+    background: linear-gradient(45deg, #00ffff, #0080ff);
+    color: #0f0f23;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+}
+
+.download-btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.6);
+}
+
+.download-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.download-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Анимации для уведомлений */
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Анимации для интерактивных частиц */
+@keyframes interactive-particle-float {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(10px, -20px) scale(1);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(-15px, -60px) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-30px, -100px) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes random-particle-drift {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(100px, -50px) rotate(180deg) scale(1.3);
+        opacity: 0.9;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-80px, -120px) rotate(360deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Дополнительные стили для частиц */
+.interactive-particle {
+    filter: blur(0.5px);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Адаптивность для частиц на мобильных */
+@media (max-width: 768px) {
+    .background-particles {
+        display: block;
+    }
+    
+    .particle {
+        opacity: 0.4;
+        filter: blur(2px);
+    }
+    
+    /* Меньше частиц на мобильных */
+    .particle:nth-child(n+7) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .particle {
+        opacity: 0.3;
+    }
+    
+    /* Еще меньше частиц на маленьких экранах */
+    .particle:nth-child(n+5) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .section {
+        padding: 0.5rem;
+    }
+
+    .section-content {
+        padding: 1rem;
+    }
+
+    .hero-container {
+        gap: 1.5rem;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin: 1.5rem 0;
+    }
+
+    .stat-card {
+        padding: 0.8rem;
+        min-width: 100px;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .capability-node {
+        width: 100%;
+        height: auto;
+        padding: 1.5rem 1rem;
+    }
+
+    .node-icon {
+        font-size: 1.8rem;
+    }
+
+    .code-block {
+        padding: 1rem;
+    }
+
+    .code-content {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .speed-card {
+        padding: 1.5rem;
+    }
+
+    .speed-icon {
+        font-size: 2.5rem;
+    }
+
+    .speed-value {
+        font-size: 1.8rem;
+    }
+
+    .device-card {
+        padding: 1.5rem;
+    }
+
+    .device-icon {
+        font-size: 3rem;
+    }
+
+    .install-step {
+        padding: 1rem;
+    }
+
+    .hologram-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .navigation-demo {
+        padding: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    .navigation-demo h4 {
+        font-size: 1rem;
+    }
+
+    .demo-controls span {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .algorithm-steps {
+        gap: 0.8rem;
+    }
+
+    .step {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .portfolio-grid {
+        gap: 1rem;
+    }
+
+    .nav-dots {
+        gap: 0.8rem;
+    }
+
+    .nav-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .scroll-hint {
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        transform: none;
+    }
+
+    .scroll-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* Анимации для уведомлений */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
